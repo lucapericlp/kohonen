@@ -23,12 +23,14 @@ class Network():
 		inputColours = {0:'r',1:'b',2:'g',3:'c'}
 		visualiser = Visualiser(size=111)
 		for index,neuron in enumerate(self.neurons):
-			visualiser.add(neuron.weights[0],neuron.weights[1],neuron.weights[2],'y','^')
+			visualiser.add(neuron.weights[0],neuron.weights[1],neuron.weights[2],[(0,0,0)],'^')
 
 		for index,norm_input in all_inputs.iterrows():
-			winningNeuron = self.closestNeuron(getNormalised(norm_input))
-			visualiser.add(norm_input[0],norm_input[1],norm_input[2],inputColours[winningNeuron],'o')
-			clustered_dict[winningNeuron].append(norm_input)#[str(i) for i in norm_input]) use for debugging
+			winningNeuronPos = self.closestNeuron(getNormalised(norm_input))
+			winningNeuron = self.neurons[winningNeuronPos]
+			visualiser.add(norm_input[0],norm_input[1],norm_input[2],
+				[(math.fabs(winningNeuron.weights[0]),math.fabs(winningNeuron.weights[1]),math.fabs(winningNeuron.weights[2]))],'o')
+			clustered_dict[winningNeuronPos].append(norm_input)#[str(i) for i in norm_input]) use for debugging
 		
 		visualiser.show()
 		return clustered_dict

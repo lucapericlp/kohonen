@@ -19,3 +19,4 @@ if __name__ == '__main__':
 
 # if 4 neurons are used then one is left unused as a cluster i.e it is extra
 # if 3 neurons all are used
+# if 10 neurons are used, then we have 4 clusters!
