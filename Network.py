@@ -1,8 +1,8 @@
 import math
 import random
+import pandas as pd
 from Neuron import Neuron
 from Neuron import getNormalised
-import pandas as pd
 
 class Network():
 
@@ -32,8 +32,7 @@ class Network():
 
 
 def main():
-
-	network = Network(4)
+	network = Network(1)
 	lr = 0.1
 	df = pd.read_csv('data.csv')
 	df.dropna(inplace=True)

@@ -22,6 +22,7 @@ class Neuron():
 			raise Exception('Inputs and weights dimensions are unequal')
 
 		self.weights = [weight+lr*(input_num-weight) for input_num,weight in zip(normInputs,self.weights)]
+		self.weights = getNormalised(self.weights)
 		return self.weights
 
 	def __str__(self):
