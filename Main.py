@@ -2,6 +2,9 @@ import pandas as pd
 from Network import Network
 
 '''
+A kohonen network implemented by finding the closest neuron via normalisation
+and net calculation versus the popular shortest euclidian distance.
+
 TODO: Explore and implement 3D version of Kohonen network.
 '''
 
