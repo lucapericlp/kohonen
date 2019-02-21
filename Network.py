@@ -1,16 +1,22 @@
 from Neuron import Neuron
 from Neuron import getNormalised
 from Visualiser import Visualiser
+import matplotlib.animation as animation
 import math
 import random
+
+'''
+Brings together all of the individual neuron's functionality and acts as central
+co-ordinator for the training and inference mechanisms.
+'''
 
 class Network():
 
 	def __init__(self,numNeurons):
 		self.neurons = []
 		for i in range(numNeurons):
-			self.neurons.append(Neuron(weights=[random.uniform(0,1),
-											random.uniform(0,1),random.uniform(0,1)]))
+			num = random.uniform(0,1)
+			self.neurons.append(Neuron(weights=[num,num,num]))
 
 	def train(self,inputs,lr):
 		normalised_inputs = getNormalised(inputs)
@@ -18,9 +24,9 @@ class Network():
 		winningNeuron = self.neurons[posWithLargestScore]
 		winningNeuron.updateWeights(normalised_inputs,lr)
 
-	def predict(self,all_inputs):
-		clustered_dict = {index:[] for index,neuron in enumerate(self.neurons)} #initialise positions
-		inputColours = {0:'r',1:'b',2:'g',3:'c'}
+	def evaluate(self,all_inputs):
+		#initialise positions
+		clustered_dict = {index:[] for index,neuron in enumerate(self.neurons)}
 		visualiser = Visualiser(size=111)
 		for index,neuron in enumerate(self.neurons):
 			visualiser.add(neuron.weights[0],neuron.weights[1],neuron.weights[2],[(0,0,0)],'^')

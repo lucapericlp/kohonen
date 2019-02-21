@@ -1,22 +1,22 @@
 import pandas as pd
 from Network import Network
 
+'''
+TODO: Explore and implement 3D version of Kohonen network.
+'''
+
 def main():
 	network = Network(numNeurons=4)
-	lr = 0.1
-	epochs = 600
+	lr = 0.01
+	epochs = 500
 	df = pd.read_csv('data.csv',header=None)
 	df.dropna(inplace=True)
 	for i in range(epochs):
 		for index,row in df.iterrows():
 			network.train(row,lr)
 
-	clustered_dict = network.predict(df)
-	print(network)
+	clustered_dict = network.evaluate(df)
+	print(network,"\n\n\n",clustered_dict)
 
 if __name__ == '__main__':
 	main()
-
-# if 4 neurons are used then one is left unused as a cluster i.e it is extra
-# if 3 neurons all are used
-# if 10 neurons are used, then we have 4 clusters!

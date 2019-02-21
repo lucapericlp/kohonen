@@ -1,6 +1,10 @@
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
+'''
+Visualiser wrapping class
+'''
+
 class Visualiser():
 	def __init__(self,size):
 		self.fig = plt.figure()
